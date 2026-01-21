@@ -10,6 +10,9 @@ This is my first blog post using **Markdown**.
 
 ```python
 print("Hello, World!")
+a = 1 
+b = 2
+print(a + b)
 ```
 ## Math Example
 

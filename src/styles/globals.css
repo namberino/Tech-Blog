@@ -167,7 +167,7 @@ body {
          prose-headings:font-semibold
          prose-headings:text-neutral-900
          prose-p:text-neutral-700
-         prose-p:leading-relaxed
+         prose-p:leading-[1.6]
          prose-a:text-neutral-900
          prose-a:underline
          prose-a:decoration-neutral-400
@@ -191,6 +191,29 @@ body {
          prose-strong:text-white
          prose-blockquote:border-neutral-700
          prose-blockquote:text-neutral-300;
+}
+
+.prose h2,
+.prose h3,
+.prose h4 {
+  margin-top: 1.4em;
+  margin-bottom: 0.55em;
+}
+
+.prose p {
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+}
+
+.prose ul,
+.prose ol {
+  margin-top: 0.5em;
+  margin-bottom: 0.6em;
+}
+
+.prose li {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
 }
 
 .prose pre {
@@ -219,7 +242,14 @@ body {
 }
 
 .language-badge {
-  @apply absolute left-3 top-3 rounded-md border border-white/20 bg-white/10 px-2 py-1 text-xs font-mono uppercase tracking-widest text-white;
+  @apply absolute rounded-full border px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.2em];
+  left: 1rem;
+  top: -0.7rem;
+  background: var(--card-2);
+  color: var(--lang-accent, var(--muted));
+  border-color: var(--border);
+  opacity: 0.75;
+  box-shadow: 0 6px 18px var(--shadow);
 }
 
 .copy-button {
