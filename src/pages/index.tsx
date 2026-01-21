@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getAllPosts } from '@/lib/markdown';
 import Layout from '@/layouts/Layout';
+import { siteConfig } from '@/config/site';
 
 export const POSTS_PER_PAGE = 4;
 
@@ -45,13 +46,13 @@ export default function Home({ posts, currentPage, totalPages }: HomeProps) {
         <section className="mb-16 rise-in" style={{ animationDelay: '40ms' }}>
           <div className="inline-flex items-center gap-3 rounded-full border border-neutral-300/70 dark:border-neutral-700 bg-neutral-100/70 dark:bg-neutral-900/40 px-4 py-1 text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
             <span className="h-px w-5 bg-neutral-400 dark:bg-neutral-600" />
-            Security | Systems | Research
+            {siteConfig.home.badgeText}
           </div>
           <h1 className="mt-6 text-4xl sm:text-5xl font-semibold tracking-tight text-neutral-900 dark:text-white">
-            Welcome to sondt&apos;s Blog
+            {siteConfig.home.title}
           </h1>
           <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-300 max-w-2xl">
-            Something about infosec!...
+            {siteConfig.home.subtitle}
           </p>
         </section>
 
