@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { getAllPosts } from '@/lib/markdown';
 import Layout from '@/layouts/Layout';
 
@@ -15,7 +16,7 @@ function Pagination({ currentPage, totalPages }: PaginationProps) {
       {currentPage > 1 && (
         <Link
           href={currentPage === 2 ? '/' : `/page/${currentPage - 1}`}
-          className="px-4 py-2 rounded-md border border-neutral-300 text-neutral-900 hover:bg-black hover:text-white transition dark:border-neutral-700 dark:text-neutral-100 dark:hover:bg-white dark:hover:text-black font-mono text-xs uppercase tracking-wider"
+          className="px-4 py-2 rounded-md border border-neutral-300 text-neutral-900 hover:bg-neutral-900 hover:text-neutral-100 transition dark:border-neutral-700 dark:text-neutral-100 dark:hover:bg-neutral-100 dark:hover:text-neutral-900 font-mono text-xs uppercase tracking-wider"
         >
           Previous Page
         </Link>
@@ -28,7 +29,7 @@ function Pagination({ currentPage, totalPages }: PaginationProps) {
       {currentPage < totalPages && (
         <Link
           href={`/page/${currentPage + 1}`}
-          className="px-4 py-2 rounded-md border border-neutral-300 text-neutral-900 hover:bg-black hover:text-white transition dark:border-neutral-700 dark:text-neutral-100 dark:hover:bg-white dark:hover:text-black font-mono text-xs uppercase tracking-wider"
+          className="px-4 py-2 rounded-md border border-neutral-300 text-neutral-900 hover:bg-neutral-900 hover:text-neutral-100 transition dark:border-neutral-700 dark:text-neutral-100 dark:hover:bg-neutral-100 dark:hover:text-neutral-900 font-mono text-xs uppercase tracking-wider"
         >
           Next Page
         </Link>
@@ -42,7 +43,7 @@ export default function Home({ posts, currentPage, totalPages }: HomeProps) {
     <Layout title="Home">
       <div className="max-w-4xl mx-auto">
         <section className="mb-16 rise-in" style={{ animationDelay: '40ms' }}>
-          <div className="inline-flex items-center gap-3 rounded-full border border-neutral-300/70 dark:border-neutral-700 px-4 py-1 text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
+          <div className="inline-flex items-center gap-3 rounded-full border border-neutral-300/70 dark:border-neutral-700 bg-neutral-100/70 dark:bg-neutral-900/40 px-4 py-1 text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
             <span className="h-px w-5 bg-neutral-400 dark:bg-neutral-600" />
             Security | Systems | Research
           </div>
@@ -58,16 +59,19 @@ export default function Home({ posts, currentPage, totalPages }: HomeProps) {
           {posts.map((post, index) => (
             <article
               key={post.slug}
-              className="group relative overflow-hidden rounded-2xl border border-neutral-200/70 bg-white/70 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-neutral-800 dark:bg-black/60 backdrop-blur-sm rise-in"
+              className="group relative overflow-hidden rounded-2xl surface-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lg rise-in"
               style={{ animationDelay: `${120 + index * 80}ms` }}
             >
               <Link href={`/posts/${post.slug}`}>
                 {post.featured && (
                   <div className="relative h-64 w-full overflow-hidden border-b border-neutral-200/70 dark:border-neutral-800">
-                    <img
+                    <Image
                       src={post.featured}
                       alt={post.title || 'Featured image'}
-                      className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+                      fill
+                      sizes="(min-width: 1024px) 800px, 100vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      priority={index === 0}
                     />
                   </div>
                 )}

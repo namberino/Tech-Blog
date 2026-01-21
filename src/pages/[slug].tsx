@@ -33,7 +33,7 @@ export default function Page({ page }: PageProps) {
   return (
     <Layout title={page.title}>
       <div className="max-w-4xl mx-auto rise-in" style={{ animationDelay: '60ms' }}>
-        <div className="bg-white/80 dark:bg-black/60 rounded-xl border border-neutral-200/70 dark:border-neutral-800 shadow-sm p-8 backdrop-blur-sm">
+        <div className="surface-panel rounded-xl p-8">
           <div 
             className="prose prose-lg dark:prose-invert max-w-none"
             dangerouslySetInnerHTML={{ __html: content }} 

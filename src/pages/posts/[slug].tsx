@@ -130,7 +130,7 @@ export default function Post({ post }: PostProps) {
                 </time>
               </div>
               
-              <div className="prose prose-lg mx-auto bg-white/80 dark:bg-black/60 rounded-xl border border-neutral-200/70 dark:border-neutral-800 shadow-sm p-6 dark:prose-invert text-neutral-900 dark:text-neutral-100 backdrop-blur-sm">
+              <div className="prose prose-lg mx-auto surface-panel rounded-xl p-6 dark:prose-invert text-neutral-900 dark:text-neutral-100">
                 <div dangerouslySetInnerHTML={{ __html: content }} />
               </div>
             </div>

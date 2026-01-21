@@ -81,11 +81,7 @@ export default function Layout({ children, title = 'Blog' }: LayoutProps) {
           <meta name="description" content="A professional blog about software development and technology" />
         </Head>
 
-        <header className={`sticky top-0 z-50 transition-all duration-200 ${
-          isScrolled
-            ? 'bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-neutral-200/70 dark:border-neutral-800'
-            : 'bg-white/70 dark:bg-black/70 border-b border-neutral-200/70 dark:border-neutral-800'
-        }`}>
+        <header className={`sticky top-0 z-50 transition-all duration-200 surface-bar ${isScrolled ? 'shadow-sm' : ''}`}>
           <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between h-16 items-center">
               <Link href="/" className="flex items-center space-x-2">
@@ -114,7 +110,7 @@ export default function Layout({ children, title = 'Blog' }: LayoutProps) {
         </main>
       </div>
 
-      <footer className="bg-white/80 dark:bg-black/80 border-t border-neutral-200/70 dark:border-neutral-800">
+      <footer className="surface-footer">
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-3">

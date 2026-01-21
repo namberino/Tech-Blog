@@ -7,31 +7,45 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
 :root {
-  --bg: #f7f7f7;
-  --fg: #0b0b0b;
-  --muted: #6b6b6b;
-  --muted-2: #8b8b8b;
-  --border: #e5e5e5;
-  --card: #ffffff;
-  --card-2: #fdfdfd;
-  --code-bg: #0f0f0f;
+  --bg: #f2f2f0;
+  --fg: #111111;
+  --muted: #5f5f5f;
+  --muted-2: #7a7a7a;
+  --border: #d6d6d2;
+  --card: #f6f6f4;
+  --card-2: #ededeb;
+  --bar: rgba(245, 245, 242, 0.9);
+  --shadow: rgba(0, 0, 0, 0.08);
+  --shadow-strong: rgba(0, 0, 0, 0.14);
+  --code-bg: #111111;
   --code-fg: #f5f5f5;
+  --inline-code-bg: rgba(0, 0, 0, 0.06);
+  --inline-code-border: rgba(0, 0, 0, 0.12);
   --accent: #111111;
-  --accent-contrast: #ffffff;
+  --accent-contrast: #f5f5f5;
+  --page-texture: url("data:image/svg+xml,%3Csvg width='72' height='72' viewBox='0 0 72 72' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23d7d7d3' fill-opacity='0.35'/%3E%3C/svg%3E");
+  --card-texture: url("data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23d0d0cc' fill-opacity='0.25'/%3E%3C/svg%3E");
 }
 
 .dark {
-  --bg: #0a0a0a;
-  --fg: #f5f5f5;
-  --muted: #a3a3a3;
-  --muted-2: #8a8a8a;
-  --border: #1f1f1f;
-  --card: #0f0f0f;
-  --card-2: #141414;
+  --bg: #111111;
+  --fg: #f0f0f0;
+  --muted: #b0b0b0;
+  --muted-2: #8e8e8e;
+  --border: #242424;
+  --card: #161616;
+  --card-2: #1c1c1c;
+  --bar: rgba(14, 14, 14, 0.9);
+  --shadow: rgba(0, 0, 0, 0.5);
+  --shadow-strong: rgba(0, 0, 0, 0.7);
   --code-bg: #0b0b0b;
   --code-fg: #f5f5f5;
+  --inline-code-bg: rgba(255, 255, 255, 0.08);
+  --inline-code-border: rgba(255, 255, 255, 0.16);
   --accent: #ffffff;
-  --accent-contrast: #0a0a0a;
+  --accent-contrast: #101010;
+  --page-texture: url("data:image/svg+xml,%3Csvg width='72' height='72' viewBox='0 0 72 72' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%231a1a1a' fill-opacity='0.35'/%3E%3C/svg%3E");
+  --card-texture: url("data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23181818' fill-opacity='0.3'/%3E%3C/svg%3E");
 }
 
 html {
@@ -43,22 +57,13 @@ html {
 body {
   color: var(--fg);
   background-color: var(--bg);
-  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M80 0H0V80' fill='none' stroke='%23e5e5e5' stroke-width='1'/%3E%3C/svg%3E");
-  background-size: 80px 80px;
-}
-
-.dark body {
-  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M80 0H0V80' fill='none' stroke='%23181818' stroke-width='1'/%3E%3C/svg%3E");
+  background-image: var(--page-texture);
+  background-size: 72px 72px;
 }
 
 ::selection {
-  background: #111111;
-  color: #ffffff;
-}
-
-.dark ::selection {
-  background: #ffffff;
-  color: #0a0a0a;
+  background: var(--accent);
+  color: var(--accent-contrast);
 }
 
 @keyframes rise {
@@ -118,6 +123,42 @@ body {
   .nav-link:hover::before {
     transform: scaleX(1);
   }
+
+  .surface-bar {
+    background-color: var(--bar);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+  }
+
+  .surface-footer {
+    background-color: var(--bar);
+    border-top: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+  }
+
+  .surface-card {
+    background-color: var(--card);
+    background-image: var(--card-texture);
+    background-size: 64px 64px;
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 12px 28px var(--shadow);
+  }
+
+  .dark .surface-card {
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 12px 28px var(--shadow-strong);
+  }
+
+  .surface-panel {
+    background-color: var(--card-2);
+    background-image: var(--card-texture);
+    background-size: 72px 72px;
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset, 0 10px 24px var(--shadow);
+  }
+
+  .dark .surface-panel {
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 10px 24px var(--shadow-strong);
+  }
 }
 
 /* Typography */
@@ -164,8 +205,8 @@ body {
 }
 
 .prose :not(pre) > code {
-  background: rgba(0, 0, 0, 0.06);
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: var(--inline-code-bg);
+  border: 1px solid var(--inline-code-border);
   border-radius: 6px;
   padding: 0.1em 0.35em;
   font-family: 'IBM Plex Mono', monospace;
@@ -173,8 +214,8 @@ body {
 }
 
 .dark .prose :not(pre) > code {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.12);
+  background: var(--inline-code-bg);
+  border-color: var(--inline-code-border);
 }
 
 .language-badge {
@@ -192,11 +233,16 @@ body {
 }
 
 .katex-display {
-  @apply my-8 px-6 py-6 rounded-xl border border-neutral-200 bg-white;
+  @apply my-8 px-6 py-6 rounded-xl;
+  background-color: var(--card-2);
+  background-image: var(--card-texture);
+  background-size: 72px 72px;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset, 0 10px 24px var(--shadow);
 }
 
 .dark .katex-display {
-  @apply border-neutral-800 bg-black;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 10px 24px var(--shadow-strong);
 }
 
 /* Syntax Highlighting - Monochrome */

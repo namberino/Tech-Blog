@@ -47,7 +47,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
 
   return (
     <nav className="hidden xl:block sticky top-24 ml-8 w-64 max-h-[calc(100vh-8rem)] overflow-y-auto toc-scrollbar">
-      <div className="bg-white/80 dark:bg-black/70 rounded-xl shadow-sm p-6 border border-neutral-200/70 dark:border-neutral-800 backdrop-blur-sm">
+      <div className="surface-panel rounded-xl p-6">
         <h3 className="text-xs font-mono uppercase tracking-widest mb-4 text-neutral-500 dark:text-neutral-400">
           Contents
         </h3>
