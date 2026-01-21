@@ -8,7 +8,7 @@ This is my first blog post using **Markdown**.
 
 ## Code Example
 
-```python
+```cpp
 print("Hello, World!")
 a = 1 
 b = 2
