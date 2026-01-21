@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { getAllPosts } from '@/lib/markdown';
 import Layout from '@/layouts/Layout';
 import { siteConfig } from '@/config/site';
+import TagList from '@/components/TagList';
 
 export const POSTS_PER_PAGE = 4;
 
@@ -77,7 +78,7 @@ export default function Home({ posts, currentPage, totalPages }: HomeProps) {
                   </div>
                 )}
                 <div className="p-8 sm:p-10">
-                  <div className="mb-4">
+                  <div className="mb-4 space-y-3">
                     <time className="text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
                       {post.date ? new Date(post.date).toLocaleDateString('en-EN', {
                         year: 'numeric',
@@ -85,6 +86,7 @@ export default function Home({ posts, currentPage, totalPages }: HomeProps) {
                         day: 'numeric',
                       }) : 'No date'}
                     </time>
+                    <TagList tags={post.tags} />
                   </div>
                   <h2 className="text-2xl font-semibold mb-3 text-neutral-900 dark:text-white transition-colors duration-200">
                     {post.title}
@@ -116,6 +118,7 @@ export interface HomeProps {
     date: string | null;
     excerpt: string | null;
     featured: string | null;
+    tags: string[];
   }[];
   currentPage: number;
   totalPages: number;
@@ -134,6 +137,7 @@ export async function getStaticProps() {
         date: post.date || null,
         excerpt: post.excerpt || null,
         featured: post.featured || null,
+        tags: post.tags,
       })),
       currentPage: 1,
       totalPages,

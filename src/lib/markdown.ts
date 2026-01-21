@@ -6,6 +6,25 @@ import { resolveContentAssetUrl } from '@/lib/content-assets'
 const postsDirectory = path.join(process.cwd(), 'content')
 const pagesDirectory = path.join(process.cwd(), 'content', 'pages')
 
+const normalizeTags = (value: unknown): string[] => {
+  if (Array.isArray(value)) {
+    const tags = value
+      .map((tag) => String(tag).trim())
+      .filter((tag) => tag.length > 0)
+    return Array.from(new Set(tags))
+  }
+
+  if (typeof value === 'string') {
+    const tags = value
+      .split(',')
+      .map((tag) => tag.trim())
+      .filter((tag) => tag.length > 0)
+    return Array.from(new Set(tags))
+  }
+
+  return []
+}
+
 export function getAllPosts() {
   const fileNames = fs.readdirSync(postsDirectory)
   return fileNames
@@ -23,6 +42,7 @@ export function getAllPosts() {
         date: data.date,
         excerpt: data.excerpt,
         featured: resolveContentAssetUrl(data.featured || null),
+        tags: normalizeTags(data.tags),
         content
       }
     })
@@ -41,6 +61,7 @@ export function getPostBySlug(slug: string) {
       date: data.date,
       excerpt: data.excerpt,
       featured: resolveContentAssetUrl(data.featured || null),
+      tags: normalizeTags(data.tags),
       content
     }
   } catch (error) {

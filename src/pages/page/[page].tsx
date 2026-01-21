@@ -45,6 +45,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
         date: post.date || null,
         excerpt: post.excerpt || null,
         featured: post.featured || null,
+        tags: post.tags,
       })),
       currentPage,
       totalPages,
