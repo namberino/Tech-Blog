@@ -22,6 +22,8 @@
   --inline-code-border: rgba(0, 0, 0, 0.12);
   --accent: #111111;
   --accent-contrast: #f5f5f5;
+  --grid-line: rgba(17, 17, 17, 0.06);
+  --grid-size: 56px;
   --page-texture: url("data:image/svg+xml,%3Csvg width='72' height='72' viewBox='0 0 72 72' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23d7d7d3' fill-opacity='0.35'/%3E%3C/svg%3E");
   --card-texture: url("data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23d0d0cc' fill-opacity='0.25'/%3E%3C/svg%3E");
 }
@@ -43,6 +45,7 @@
   --inline-code-border: rgba(255, 255, 255, 0.16);
   --accent: #ffffff;
   --accent-contrast: #101010;
+  --grid-line: rgba(255, 255, 255, 0.08);
   --page-texture: url("data:image/svg+xml,%3Csvg width='72' height='72' viewBox='0 0 72 72' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%231a1a1a' fill-opacity='0.35'/%3E%3C/svg%3E");
   --card-texture: url("data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23181818' fill-opacity='0.3'/%3E%3C/svg%3E");
 }
@@ -56,8 +59,14 @@ html {
 body {
   color: var(--fg);
   background-color: var(--bg);
-  background-image: var(--page-texture);
-  background-size: 72px 72px;
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px),
+    var(--page-texture);
+  background-size:
+    var(--grid-size) var(--grid-size),
+    var(--grid-size) var(--grid-size),
+    72px 72px;
 }
 
 ::selection {
