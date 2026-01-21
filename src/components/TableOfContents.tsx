@@ -47,9 +47,9 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
 
   return (
     <nav className="hidden xl:block sticky top-24 ml-8 w-64 max-h-[calc(100vh-8rem)] overflow-y-auto toc-scrollbar">
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700">
-        <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
-          Table of Contents
+      <div className="bg-white/80 dark:bg-black/70 rounded-xl shadow-sm p-6 border border-neutral-200/70 dark:border-neutral-800 backdrop-blur-sm">
+        <h3 className="text-xs font-mono uppercase tracking-widest mb-4 text-neutral-500 dark:text-neutral-400">
+          Contents
         </h3>
         <ul className="space-y-2 text-sm">
           {headings.map((heading) => (
@@ -62,8 +62,8 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
                 href={`#${heading.id}`}
                 className={`block py-1 transition-colors duration-200 ${
                   activeId === heading.id
-                    ? 'text-blue-600 font-medium dark:text-blue-400'
-                    : 'text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400'
+                    ? 'text-neutral-900 font-semibold dark:text-white'
+                    : 'text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white'
                 }`}
                 onClick={(e) => {
                   e.preventDefault();

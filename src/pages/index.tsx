@@ -11,24 +11,24 @@ interface PaginationProps {
 
 function Pagination({ currentPage, totalPages }: PaginationProps) {
   return (
-    <div className="flex justify-center space-x-4 mt-8">
+    <div className="flex flex-wrap items-center justify-center gap-3 mt-10">
       {currentPage > 1 && (
         <Link
           href={currentPage === 2 ? '/' : `/page/${currentPage - 1}`}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
+          className="px-4 py-2 rounded-md border border-neutral-300 text-neutral-900 hover:bg-black hover:text-white transition dark:border-neutral-700 dark:text-neutral-100 dark:hover:bg-white dark:hover:text-black font-mono text-xs uppercase tracking-wider"
         >
           Previous Page
         </Link>
       )}
       
-      <span className="px-4 py-2 text-gray-700 dark:text-gray-300">
+      <span className="px-4 py-2 text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
         Page {currentPage} / {totalPages}
       </span>
 
       {currentPage < totalPages && (
         <Link
           href={`/page/${currentPage + 1}`}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
+          className="px-4 py-2 rounded-md border border-neutral-300 text-neutral-900 hover:bg-black hover:text-white transition dark:border-neutral-700 dark:text-neutral-100 dark:hover:bg-white dark:hover:text-black font-mono text-xs uppercase tracking-wider"
         >
           Next Page
         </Link>
@@ -41,32 +41,39 @@ export default function Home({ posts, currentPage, totalPages }: HomeProps) {
   return (
     <Layout title="Home">
       <div className="max-w-4xl mx-auto">
-        <section className="mb-16">
-          <h1 className="text-4xl font-bold mb-4 dark:text-white">Welcome to sondt&apos;s Blog</h1>
-          <p className="text-xl text-gray-600 dark:text-gray-100">
+        <section className="mb-16 rise-in" style={{ animationDelay: '40ms' }}>
+          <div className="inline-flex items-center gap-3 rounded-full border border-neutral-300/70 dark:border-neutral-700 px-4 py-1 text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
+            <span className="h-px w-5 bg-neutral-400 dark:bg-neutral-600" />
+            Security | Systems | Research
+          </div>
+          <h1 className="mt-6 text-4xl sm:text-5xl font-semibold tracking-tight text-neutral-900 dark:text-white">
+            Welcome to sondt&apos;s Blog
+          </h1>
+          <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-300 max-w-2xl">
             Something about infosec!...
           </p>
         </section>
 
-        <section className="space-y-12">
-          {posts.map((post) => (
+        <section className="space-y-10">
+          {posts.map((post, index) => (
             <article
               key={post.slug}
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300"
+              className="group relative overflow-hidden rounded-2xl border border-neutral-200/70 bg-white/70 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-neutral-800 dark:bg-black/60 backdrop-blur-sm rise-in"
+              style={{ animationDelay: `${120 + index * 80}ms` }}
             >
               <Link href={`/posts/${post.slug}`}>
                 {post.featured && (
-                  <div className="relative h-64 w-full overflow-hidden">
+                  <div className="relative h-64 w-full overflow-hidden border-b border-neutral-200/70 dark:border-neutral-800">
                     <img
                       src={post.featured}
                       alt={post.title || 'Featured image'}
-                      className="object-cover w-full h-full transform hover:scale-105 transition duration-300"
+                      className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
                 )}
-                <div className="p-8">
+                <div className="p-8 sm:p-10">
                   <div className="mb-4">
-                    <time className="text-sm text-gray-500 dark:text-gray-100">
+                    <time className="text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
                       {post.date ? new Date(post.date).toLocaleDateString('en-EN', {
                         year: 'numeric',
                         month: 'long',
@@ -74,15 +81,15 @@ export default function Home({ posts, currentPage, totalPages }: HomeProps) {
                       }) : 'No date'}
                     </time>
                   </div>
-                  <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white hover:text-blue-600 transition">
+                  <h2 className="text-2xl font-semibold mb-3 text-neutral-900 dark:text-white transition-colors duration-200">
                     {post.title}
                   </h2>
                   {post.excerpt && (
-                    <p className="text-gray-600 dark:text-gray-100 mb-4">{post.excerpt}</p>
+                    <p className="text-neutral-600 dark:text-neutral-300 mb-5">{post.excerpt}</p>
                   )}
                   <div className="flex items-center">
-                    <span className="text-blue-600 dark:text-blue-400 hover:text-blue-800">
-                      Read more→
+                    <span className="text-neutral-800 dark:text-neutral-200 font-mono text-xs uppercase tracking-widest">
+                      Read more
                     </span>
                   </div>
                 </div>

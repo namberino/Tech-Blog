@@ -32,13 +32,13 @@ export default function Page({ page }: PageProps) {
 
   return (
     <Layout title={page.title}>
-      <div className="max-w-4xl mx-auto">
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8">
+      <div className="max-w-4xl mx-auto rise-in" style={{ animationDelay: '60ms' }}>
+        <div className="bg-white/80 dark:bg-black/60 rounded-xl border border-neutral-200/70 dark:border-neutral-800 shadow-sm p-8 backdrop-blur-sm">
           <div 
             className="prose prose-lg dark:prose-invert max-w-none"
             dangerouslySetInnerHTML={{ __html: content }} 
           />
-          <div className="mt-8 text-sm text-gray-500 dark:text-gray-400">
+          <div className="mt-8 text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
             Last updated: {new Date(page.lastUpdated).toLocaleDateString('vi-VN')}
           </div>
         </div>
