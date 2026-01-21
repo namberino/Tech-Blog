@@ -159,12 +159,12 @@ plain = rsa_decrypt(cipher, n, d)
 - [ ] Rotate keys and revoke old certs.
 - [ ] Ensure error messages are uniform.
 
-## Footnote
-
-[^1]: If you are tempted to implement RSA yourself, stop and use a well-tested library instead.
 
 ## Further reading
 
 - [RFC 8017: PKCS #1](https://www.rfc-editor.org/rfc/rfc8017)
 - [RSA blinding](https://en.wikipedia.org/wiki/Blinding_(cryptography))
 - [Padding oracle attacks](https://en.wikipedia.org/wiki/Padding_oracle_attack)
+
+[^1]: If you are tempted to implement RSA yourself, stop and use a well-tested library instead.
+

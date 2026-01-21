@@ -24,7 +24,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
       },
       {
         rootMargin: '-100px 0% -80% 0%',
-        threshold: 1.0,
+        threshold: 0.25,
       }
     );
 
@@ -36,12 +36,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
     });
 
     return () => {
-      headings.forEach(({ id }) => {
-        const element = document.getElementById(id);
-        if (element) {
-          observer.unobserve(element);
-        }
-      });
+      observer.disconnect();
     };
   }, [headings]);
 
