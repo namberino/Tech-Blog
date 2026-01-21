@@ -49,7 +49,7 @@ export default function Page({ page }: PageProps) {
       <div className="max-w-4xl mx-auto rise-in" style={{ animationDelay: '60ms' }}>
         <div className="surface-panel rounded-xl p-8">
           <div 
-            className="prose prose-lg dark:prose-invert max-w-none"
+            className="prose dark:prose-invert max-w-none"
             dangerouslySetInnerHTML={{ __html: content }} 
           />
           {formattedLastUpdated ? (

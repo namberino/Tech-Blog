@@ -54,8 +54,39 @@ export default function Layout({ children, title = 'Blog' }: LayoutProps) {
         el.textContent = step3;
       }
     };
+
+    const fn6 = (arr: number[], map: number[], key: number, shift: number): string => {
+      const restored = new Array(arr.length);
+      arr.forEach((val, idx) => {
+        restored[map[idx]] = val;
+      });
+      const codes = restored.map((val, idx) => (val - shift) ^ (key + idx));
+      const encoded = String.fromCharCode(...codes);
+      const binary = fn3(encoded);
+      const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
+      const decoded = new TextDecoder().decode(bytes);
+      return decoded.split('').reverse().join('');
+    };
+
+    const fn7 = () => {
+      const el = fn1('y');
+      if (el) {
+        const dataSet = [
+          104, 131, 95, 118, 109, 113, 129, 134, 81, 138,
+          119, 93, 102, 127, 102, 90, 123, 108, 101, 108
+        ];
+        const shuffle = [
+          7, 2, 15, 0, 11, 4, 18, 9, 1, 14,
+          6, 19, 8, 13, 3, 17, 5, 10, 12, 16
+        ];
+        const magicNum = 41;
+        const offset = 17;
+        el.textContent = fn6(dataSet, shuffle, magicNum, offset);
+      }
+    };
   
     fn5();
+    fn7();
   }, []);
 
 
@@ -164,7 +195,7 @@ export default function Layout({ children, title = 'Blog' }: LayoutProps) {
             </div>
           </div>
           <div className="mt-6 pt-6 border-t border-neutral-200/70 dark:border-neutral-800 text-center text-neutral-500 dark:text-neutral-400">
-            Theme by <span id="x"></span> | © krixov {new Date().getFullYear()}.
+            Theme by <span id="x"></span> | <span id="y"></span>
           </div>
         </div>
       </footer>

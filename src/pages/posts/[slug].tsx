@@ -138,7 +138,7 @@ export default function Post({ post }: PostProps) {
                 <TagList tags={post.tags} className="mt-3" />
               </div>
               
-              <div className="prose prose-lg mx-auto surface-panel rounded-xl p-6 dark:prose-invert text-neutral-900 dark:text-neutral-100">
+              <div className="prose mx-auto surface-panel rounded-xl p-6 dark:prose-invert text-neutral-900 dark:text-neutral-100">
                 <div dangerouslySetInnerHTML={{ __html: content }} />
               </div>
             </div>
