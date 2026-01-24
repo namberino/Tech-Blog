@@ -7,7 +7,7 @@ export const siteConfig = {
     links: [
       {
         label: 'Github',
-        href: 'https://github.com/sondt1337/Tech-Blog'
+        href: 'https://github.com/sondt99/Tech-Blog'
       },
       {
         label: 'About',
@@ -69,11 +69,11 @@ export const siteConfig = {
     aboutText: 'Sharing In-Depth Insights About Security, CTF Challenges, and Tech Architecture.',
     connectTitle: 'Connect',
     social: {
-      githubUrl: 'https://github.com/sondt1337',
-      xUrl: 'https://x.com/krixov'
+      githubUrl: 'https://github.com/sondt99',
+      xUrl: 'https://x.com/_sondt_'
     }
   },
   api: {
-    helloName: 'sondt hehe'
+    helloName: 'sondt'
   }
 } as const
