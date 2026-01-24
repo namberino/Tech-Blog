@@ -46,7 +46,7 @@ export default function rehypeContentAssets() {
       }
 
       if (node.type === 'element' && node.tagName === 'img') {
-        const properties = node.properties;
+        const properties = node.properties ?? (node.properties = {});
         const src = properties.src;
         if (typeof src === 'string') {
           const resolved = resolveContentAssetUrl(src);
