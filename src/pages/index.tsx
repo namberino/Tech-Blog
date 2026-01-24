@@ -20,12 +20,12 @@ function Pagination({ currentPage, totalPages }: PaginationProps) {
           href={currentPage === 2 ? '/' : `/page/${currentPage - 1}`}
           className="px-4 py-2 rounded-md border border-neutral-300 text-neutral-900 hover:bg-neutral-900 hover:text-neutral-100 transition dark:border-neutral-700 dark:text-neutral-100 dark:hover:bg-neutral-100 dark:hover:text-neutral-900 font-mono text-xs uppercase tracking-wider"
         >
-          Previous Page
+          {siteConfig.pagination.previousLabel}
         </Link>
       )}
       
       <span className="px-4 py-2 text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
-        Page {currentPage} / {totalPages}
+        {siteConfig.pagination.pageLabel} {currentPage} / {totalPages}
       </span>
 
       {currentPage < totalPages && (
@@ -33,7 +33,7 @@ function Pagination({ currentPage, totalPages }: PaginationProps) {
           href={`/page/${currentPage + 1}`}
           className="px-4 py-2 rounded-md border border-neutral-300 text-neutral-900 hover:bg-neutral-900 hover:text-neutral-100 transition dark:border-neutral-700 dark:text-neutral-100 dark:hover:bg-neutral-100 dark:hover:text-neutral-900 font-mono text-xs uppercase tracking-wider"
         >
-          Next Page
+          {siteConfig.pagination.nextLabel}
         </Link>
       )}
     </div>
@@ -42,7 +42,7 @@ function Pagination({ currentPage, totalPages }: PaginationProps) {
 
 export default function Home({ posts, currentPage, totalPages }: HomeProps) {
   return (
-    <Layout title="Home">
+    <Layout title={siteConfig.home.pageTitle}>
       <div className="max-w-4xl mx-auto">
         <section className="mb-16 rise-in" style={{ animationDelay: '40ms' }}>
           <div className="inline-flex items-center gap-3 rounded-full border border-neutral-300/70 dark:border-neutral-700 bg-neutral-100/70 dark:bg-neutral-900/40 px-4 py-1 text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
@@ -69,7 +69,7 @@ export default function Home({ posts, currentPage, totalPages }: HomeProps) {
                   <div className="relative h-64 w-full overflow-hidden border-b border-neutral-200/70 dark:border-neutral-800">
                     <Image
                       src={post.featured}
-                      alt={post.title || 'Featured image'}
+                      alt={post.title || siteConfig.home.featuredAlt}
                       fill
                       sizes="(min-width: 1024px) 800px, 100vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -80,11 +80,12 @@ export default function Home({ posts, currentPage, totalPages }: HomeProps) {
                 <div className="p-8 sm:p-10">
                   <div className="mb-4 space-y-3">
                     <time className="text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
-                      {post.date ? new Date(post.date).toLocaleDateString('en-EN', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                      }) : 'No date'}
+                      {post.date
+                        ? new Date(post.date).toLocaleDateString(
+                            siteConfig.formatting.dateLocale,
+                            siteConfig.formatting.dateOptions
+                          )
+                        : siteConfig.home.noDateLabel}
                     </time>
                     <TagList tags={post.tags} />
                   </div>
@@ -96,7 +97,7 @@ export default function Home({ posts, currentPage, totalPages }: HomeProps) {
                   )}
                   <div className="flex items-center">
                     <span className="text-neutral-800 dark:text-neutral-200 font-mono text-xs uppercase tracking-widest">
-                      Read more
+                      {siteConfig.home.readMoreLabel}
                     </span>
                   </div>
                 </div>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { siteConfig } from '@/config/site';
 
 interface TocItem {
   id: string;
@@ -44,7 +45,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
     <nav className="hidden xl:block sticky top-24 ml-8 w-64 max-h-[calc(100vh-8rem)] overflow-y-auto toc-scrollbar">
       <div className="surface-panel rounded-xl p-6">
         <h3 className="text-xs font-mono uppercase tracking-widest mb-4 text-neutral-500 dark:text-neutral-400">
-          Contents
+          {siteConfig.toc.title}
         </h3>
         <ul className="space-y-2 text-sm">
           {headings.map((heading) => (

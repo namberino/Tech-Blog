@@ -13,6 +13,7 @@ import TableOfContents from '@/components/TableOfContents';
 import remarkEmoji from 'remark-emoji'
 import rehypeContentAssets from '@/lib/rehype-content-assets'
 import TagList from '@/components/TagList';
+import { siteConfig } from '@/config/site';
 
 // Thêm interface cho heading
 interface TocItem {
@@ -50,11 +51,11 @@ const formatDate = (
 
 export default function Post({ post }: PostProps) {
   const [headings, setHeadings] = useState<TocItem[]>([]);
-  const formattedDate = formatDate(post.date, 'en-EN', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
+  const formattedDate = formatDate(
+    post.date,
+    siteConfig.formatting.dateLocale,
+    siteConfig.formatting.dateOptions
+  );
 
   useEffect(() => {
     const articleContent = document.querySelector('.prose');
@@ -81,12 +82,12 @@ export default function Post({ post }: PostProps) {
   const copyToClipboard = async (text: string, buttonElement: HTMLButtonElement) => {
     try {
       await navigator.clipboard.writeText(text);
-      buttonElement.textContent = 'Copied!';
+      buttonElement.textContent = siteConfig.post.copyButtonCopiedLabel;
       setTimeout(() => {
-        buttonElement.textContent = 'Copy';
+        buttonElement.textContent = siteConfig.post.copyButtonLabel;
       }, 2000);
     } catch (err) {
-      console.error('Failed to copy:', err);
+      console.error(`${siteConfig.post.copyErrorLabel}:`, err);
     }
   };
 
@@ -100,7 +101,7 @@ export default function Post({ post }: PostProps) {
       // Thêm copy button với style mới
       if (!pre.querySelector('.copy-button')) {
         const copyButton = document.createElement('button');
-        copyButton.textContent = 'Copy';
+        copyButton.textContent = siteConfig.post.copyButtonLabel;
         copyButton.className = 'copy-button';
         const code = pre.textContent || '';
         copyButton.addEventListener('click', () => copyToClipboard(code, copyButton));
@@ -134,7 +135,7 @@ export default function Post({ post }: PostProps) {
             <div className="flex-1 max-w-4xl">
               <div className="mb-12">
                 <Link href="/" className="text-xs font-mono uppercase tracking-widest text-neutral-600 hover:text-neutral-900 mb-8 inline-block dark:text-neutral-400 dark:hover:text-white">
-                  Back to home
+                  {siteConfig.post.backToHomeLabel}
                 </Link>
                 <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight mb-4 text-neutral-900 dark:text-white">{post.title}</h1>
                 {formattedDate ? (
@@ -148,28 +149,28 @@ export default function Post({ post }: PostProps) {
               <section className="mb-8">
                 <div className="surface-panel rounded-xl p-5">
                   <h2 className="text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-4">
-                    Article stats
+                    {siteConfig.post.statsTitle}
                   </h2>
                   <dl className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
                     <div>
                       <dt className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
-                        Read time
+                        {siteConfig.post.statsLabels.readTime}
                       </dt>
                       <dd className="mt-2 text-base sm:text-lg font-semibold text-neutral-900 dark:text-white">
-                        {post.stats.readingTimeMinutes} min
+                        {post.stats.readingTimeMinutes} {siteConfig.post.statsLabels.minutes}
                       </dd>
                     </div>
                     <div>
                       <dt className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
-                        Words
+                        {siteConfig.post.statsLabels.words}
                       </dt>
                       <dd className="mt-2 text-base sm:text-lg font-semibold text-neutral-900 dark:text-white">
-                        {post.stats.wordCount.toLocaleString('en-US')}
+                        {post.stats.wordCount.toLocaleString(siteConfig.formatting.numberLocale)}
                       </dd>
                     </div>
                     <div>
                       <dt className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
-                        Headings
+                        {siteConfig.post.statsLabels.headings}
                       </dt>
                       <dd className="mt-2 text-base sm:text-lg font-semibold text-neutral-900 dark:text-white">
                         {post.stats.headingCount}
@@ -177,7 +178,7 @@ export default function Post({ post }: PostProps) {
                     </div>
                     <div>
                       <dt className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
-                        Code blocks
+                        {siteConfig.post.statsLabels.codeBlocks}
                       </dt>
                       <dd className="mt-2 text-base sm:text-lg font-semibold text-neutral-900 dark:text-white">
                         {post.stats.codeBlockCount}
@@ -185,7 +186,7 @@ export default function Post({ post }: PostProps) {
                     </div>
                     <div>
                       <dt className="text-[10px] font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
-                        Images
+                        {siteConfig.post.statsLabels.images}
                       </dt>
                       <dd className="mt-2 text-base sm:text-lg font-semibold text-neutral-900 dark:text-white">
                         {post.stats.imageCount}

@@ -124,9 +124,23 @@ export default function Layout({ children, title = 'Blog' }: LayoutProps) {
               
               <div className="flex items-center space-x-6">
                 {/* <Link href="/" className="nav-link">Home</Link> */}
-                <Link href={siteConfig.nav.repoUrl} className="nav-link">{siteConfig.nav.repoLabel}</Link>
-                <Link href="/about" className="nav-link">About</Link>
-                <Link href="/archivement" className="nav-link">Archivement</Link>
+                {siteConfig.nav.links.map((link) =>
+                  link.external ? (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="nav-link"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link key={link.label} href={link.href} className="nav-link">
+                      {link.label}
+                    </Link>
+                  )
+                )}
                 <button
                   onClick={toggleDarkMode}
                   className="p-2 rounded-md border border-transparent hover:border-neutral-300 hover:bg-neutral-100 dark:hover:border-neutral-700 dark:hover:bg-neutral-900 transition-colors"
@@ -180,7 +194,7 @@ export default function Layout({ children, title = 'Blog' }: LayoutProps) {
               </p>
             </div>
             <div>
-              <h3 className="text-lg font-semibold mb-3">Connect</h3>
+              <h3 className="text-lg font-semibold mb-3">{siteConfig.footer.connectTitle}</h3>
               <div className="flex space-x-4 text-neutral-700 dark:text-neutral-300">
                 <a href={siteConfig.footer.social.githubUrl} target="_blank" rel="noopener noreferrer" className="social-link">
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">

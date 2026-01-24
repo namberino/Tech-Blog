@@ -9,6 +9,7 @@ import rehypeKatex from 'rehype-katex'
 import rehypeStringify from 'rehype-stringify'
 import remarkEmoji from 'remark-emoji';
 import rehypeContentAssets from '@/lib/rehype-content-assets';
+import { siteConfig } from '@/config/site';
 
 
 interface PageProps {
@@ -31,7 +32,7 @@ const formatDate = (
 };
 
 export default function Page({ page }: PageProps) {
-  const formattedLastUpdated = formatDate(page.lastUpdated, 'vi-VN');
+  const formattedLastUpdated = formatDate(page.lastUpdated, siteConfig.page.lastUpdatedLocale);
   const content = unified()
     .use(remarkParse)
     .use(remarkMath)
@@ -54,7 +55,7 @@ export default function Page({ page }: PageProps) {
           />
           {formattedLastUpdated ? (
             <div className="mt-8 text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
-              Last updated: {formattedLastUpdated}
+              {siteConfig.page.lastUpdatedLabel} {formattedLastUpdated}
             </div>
           ) : null}
         </div>
