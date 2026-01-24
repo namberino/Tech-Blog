@@ -126,6 +126,7 @@ export default function Layout({ children, title = 'Blog' }: LayoutProps) {
                 {/* <Link href="/" className="nav-link">Home</Link> */}
                 <Link href={siteConfig.nav.repoUrl} className="nav-link">{siteConfig.nav.repoLabel}</Link>
                 <Link href="/about" className="nav-link">About</Link>
+                <Link href="/archivement" className="nav-link">Archivement</Link>
                 <button
                   onClick={toggleDarkMode}
                   className="p-2 rounded-md border border-transparent hover:border-neutral-300 hover:bg-neutral-100 dark:hover:border-neutral-700 dark:hover:bg-neutral-900 transition-colors"
