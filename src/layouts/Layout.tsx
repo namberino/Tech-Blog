@@ -195,7 +195,15 @@ export default function Layout({ children, title = 'Blog' }: LayoutProps) {
             </div>
           </div>
           <div className="mt-6 pt-6 border-t border-neutral-200/70 dark:border-neutral-800 text-center text-neutral-500 dark:text-neutral-400">
-            Theme by <span id="x"></span> | <span id="y"></span>
+            <a
+              href="https://github.com/sondt99/Tech-Blog"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-neutral-400/70 underline-offset-4 transition-colors hover:text-neutral-700 dark:hover:text-neutral-300"
+            >
+              Theme by <span id="x"></span>
+            </a>{" "}
+            | <span id="y"></span>
           </div>
         </div>
       </footer>
