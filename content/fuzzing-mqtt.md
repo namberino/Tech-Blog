@@ -4,7 +4,6 @@ date: "2025-10-09"
 tags:
   - security
   - fuzzing
-author: "Nam Nguyen"
 excerpt: "Let's build a fuzzer for the MQTT protocol"
 ---
 

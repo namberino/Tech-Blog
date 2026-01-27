@@ -5,7 +5,7 @@ tags:
   - programming
   - science
   - simulation
-description: "Modeling and simulating a Thrust Vector Control rocket using Python"
+excerpt: "Modeling and simulating a Thrust Vector Control rocket using Python"
 ---
 
 Rocketry has always been a fascinating topic for me and I'd love to get into model rocketry because it seems so interesting. Unfortunately, due to where I live, I can't really get into it due to lack of materials, cost, and local laws. So what's a guy to do when he wants to get into rocketry but can't physically do it? He goes the virtual simulation route. 

@@ -4,7 +4,7 @@ date: "2024-02-19"
 tags:
   - physics
   - math
-description: "The physics of the OceanGate's Titan incident"
+excerpt: "The physics of the OceanGate's Titan incident"
 ---
 
 I was bored so I went down the rabbit hole of engineering disasters. One disaster that caught my eyes was the *OceanGate's Titan incident*. It caught my eyes because I was curious about how much pressure was applied onto the submarine at that depth, so I grab my calculator and got to work.
