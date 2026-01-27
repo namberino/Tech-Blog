@@ -1,6 +1,6 @@
 ---
 title: "Fire! But cold"
-date: 2024-04-18
+date: "2024-04-18"
 tags:
   - science
   - physics

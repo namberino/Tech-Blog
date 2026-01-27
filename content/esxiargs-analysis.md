@@ -1,6 +1,6 @@
 ---
 title: "ESXiArgs: An Analysis"
-date: 2024-04-01
+date: "2024-04-01"
 tags:
   - malware
   - reverse engineering

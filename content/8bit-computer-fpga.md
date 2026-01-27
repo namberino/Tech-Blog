@@ -1,6 +1,6 @@
 ---
 title: "8-bit Computer in FPGA"
-date: 2024-02-26
+date: "2024-02-26"
 tags:
   - programming
   - hardware

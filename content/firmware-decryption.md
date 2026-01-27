@@ -1,6 +1,6 @@
 ---
 title: "Decrypting a Serial-To-WiFi device's firmware"
-date: 2024-04-22
+date: "2024-04-22"
 tags:
   - programming
   - reverse engineering

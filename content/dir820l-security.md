@@ -1,6 +1,6 @@
 ---
 title: "IoT Security Analysis: D-Link DIR-820L Router"
-date: 2025-05-31
+date: "2025-05-31"
 tags:
   - IoT
   - security

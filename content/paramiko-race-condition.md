@@ -1,6 +1,6 @@
 ---
 title: "Exploring Race Condition: Developing a Simple Exploit for CVE-2022-24302"
-date: 2025-07-08
+date: "2025-07-08"
 tags:
   - security
   - code review

@@ -1,6 +1,6 @@
 ---
 title: "Let's make an HTTP server with Assembly"
-date: 2025-01-17
+date: "2025-01-17"
 tags:
   - programming
   - low level system

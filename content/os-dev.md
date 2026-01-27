@@ -1,6 +1,6 @@
 ---
 title: "How boot sectors work"
-date: 2024-06-20
+date: "2024-06-20"
 tags:
   - programming
   - operating system

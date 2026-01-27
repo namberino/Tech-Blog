@@ -1,6 +1,6 @@
 ---
 title: "Fuzzing IoT Protocol: MQTT"
-date: 2025-10-09
+date: "2025-10-09"
 tags:
   - security
   - fuzzing

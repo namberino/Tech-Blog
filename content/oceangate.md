@@ -1,6 +1,6 @@
 ---
 title: "The pressure of OceanGate's Titan"
-date: 2024-02-19
+date: "2024-02-19"
 tags:
   - physics
   - math

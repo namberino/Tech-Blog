@@ -1,6 +1,6 @@
 ---
 title: "Modeling a Thrust Vector Control Rocket in Python"
-date: 2024-06-05
+date: "2024-06-05"
 tags:
   - programming
   - science
