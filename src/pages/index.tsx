@@ -18,12 +18,12 @@ function Pagination({ currentPage, totalPages }: PaginationProps) {
       {currentPage > 1 && (
         <Link
           href={currentPage === 2 ? '/' : `/page/${currentPage - 1}`}
-          className="px-4 py-2 rounded-md border border-neutral-300 text-neutral-900 hover:bg-neutral-900 hover:text-neutral-100 transition dark:border-neutral-700 dark:text-neutral-100 dark:hover:bg-neutral-100 dark:hover:text-neutral-900 font-mono text-xs uppercase tracking-wider"
+          className="px-4 py-2 rounded-md border border-neutral-300 text-neutral-900 hover:border-[var(--primary)] hover:text-[var(--primary)] transition dark:border-neutral-700 dark:text-neutral-100 dark:hover:border-[var(--primary)] dark:hover:text-[var(--primary)] font-mono text-xs uppercase tracking-wider"
         >
           {siteConfig.pagination.previousLabel}
         </Link>
       )}
-      
+
       <span className="px-4 py-2 text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
         {siteConfig.pagination.pageLabel} {currentPage} / {totalPages}
       </span>
@@ -31,7 +31,7 @@ function Pagination({ currentPage, totalPages }: PaginationProps) {
       {currentPage < totalPages && (
         <Link
           href={`/page/${currentPage + 1}`}
-          className="px-4 py-2 rounded-md border border-neutral-300 text-neutral-900 hover:bg-neutral-900 hover:text-neutral-100 transition dark:border-neutral-700 dark:text-neutral-100 dark:hover:bg-neutral-100 dark:hover:text-neutral-900 font-mono text-xs uppercase tracking-wider"
+          className="px-4 py-2 rounded-md border border-neutral-300 text-neutral-900 hover:border-[var(--primary)] hover:text-[var(--primary)] transition dark:border-neutral-700 dark:text-neutral-100 dark:hover:border-[var(--primary)] dark:hover:text-[var(--primary)] font-mono text-xs uppercase tracking-wider"
         >
           {siteConfig.pagination.nextLabel}
         </Link>
@@ -45,8 +45,8 @@ export default function Home({ posts, currentPage, totalPages }: HomeProps) {
     <Layout title={siteConfig.home.pageTitle}>
       <div className="max-w-4xl mx-auto">
         <section className="mb-16 rise-in" style={{ animationDelay: '40ms' }}>
-          <div className="inline-flex items-center gap-3 rounded-full border border-neutral-300/70 dark:border-neutral-700 bg-neutral-100/70 dark:bg-neutral-900/40 px-4 py-1 text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
-            <span className="h-px w-5 bg-neutral-400 dark:bg-neutral-600" />
+          <div className="inline-flex items-center gap-3 rounded-full border border-neutral-300/70 dark:border-neutral-700 bg-neutral-100/70 dark:bg-neutral-900/40 px-4 py-1 text-xs font-mono uppercase tracking-widest text-[var(--primary)] dark:text-[var(--primary)]">
+            <span className="h-px w-5 bg-[var(--primary)] dark:bg-[var(--primary)]" />
             {siteConfig.home.badgeText}
           </div>
           <h1 className="mt-6 text-4xl sm:text-5xl font-semibold tracking-tight text-neutral-900 dark:text-white">

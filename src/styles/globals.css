@@ -31,6 +31,9 @@
   --code-selection-fg: #f8f8f2;
   --accent: #111111;
   --accent-contrast: #f5f5f5;
+  --primary: #7c3aed;
+  --primary-hover: #6d28d9;
+  --primary-soft: rgba(124, 58, 237, 0.1);
   --grid-line: rgba(17, 17, 17, 0.25);
   --grid-size: 56px;
   --page-texture: url("data:image/svg+xml,%3Csvg width='72' height='72' viewBox='0 0 72 72' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23d7d7d3' fill-opacity='0.35'/%3E%3C/svg%3E");
@@ -63,9 +66,12 @@
   --code-selection-fg: #f8f8f2;
   --accent: #ffffff;
   --accent-contrast: #101010;
+  --primary: #a78bfa;
+  --primary-hover: #8b5cf6;
+  --primary-soft: rgba(167, 139, 250, 0.1);
   --grid-line: rgba(255, 255, 255, 0.15);
   --page-texture: url("data:image/svg+xml,%3Csvg width='72' height='72' viewBox='0 0 72 72' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%231a1a1a' fill-opacity='0.35'/%3E%3C/svg%3E");
-  --card-texture: url("data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23181818' fill-opacity='0.3'/%3E%3C/svg%3E");
+  --card-texture: url("data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64'64' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23181818' fill-opacity='0.3'/%3E%3C/svg%3E");
 }
 
 html {
@@ -80,8 +86,8 @@ body {
 }
 
 ::selection {
-  background: var(--accent);
-  color: var(--accent-contrast);
+  background: var(--primary-soft);
+  color: var(--fg);
 }
 
 @keyframes rise {
@@ -118,11 +124,11 @@ body {
   }
 
   .nav-link:hover {
-    @apply text-neutral-900;
+    color: var(--primary);
   }
 
   .dark .nav-link:hover {
-    @apply text-white;
+    color: var(--primary);
   }
 
   .nav-link::before {
@@ -134,7 +140,7 @@ body {
     width: 100%;
     transform: scaleX(0);
     transform-origin: left;
-    background: currentColor;
+    background: var(--primary);
     transition: transform 200ms ease;
   }
 
@@ -190,6 +196,9 @@ body {
          prose-a:underline
          prose-a:decoration-neutral-400
          prose-a:underline-offset-4
+         prose-a:transition-colors
+         prose-a:hover:text-[var(--primary)]
+         prose-a:hover:decoration-[var(--primary)]
          prose-strong:text-neutral-900
          prose-blockquote:border-l-2
          prose-blockquote:border-neutral-300
@@ -208,6 +217,9 @@ body {
          prose-p:text-neutral-300
          prose-a:text-white
          prose-a:decoration-neutral-500
+         prose-a:transition-colors
+         prose-a:hover:text-[var(--primary)]
+         prose-a:hover:decoration-[var(--primary)]
          prose-strong:text-white
          prose-blockquote:border-neutral-700
          prose-blockquote:text-neutral-300;
@@ -263,7 +275,7 @@ body {
   width: 3.5rem;
   height: 3px;
   border-radius: 999px;
-  background: var(--fg);
+  background: var(--primary);
   opacity: 0.85;
   transition: width 220ms ease;
 }
