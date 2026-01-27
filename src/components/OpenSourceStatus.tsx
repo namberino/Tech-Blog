@@ -59,7 +59,13 @@ const formatDate = (iso?: string | null) => {
 };
 
 export default function OpenSourceStatus() {
+  // @ts-expect-error - openSource is optional
+  if (!siteConfig.openSource) {
+    return null;
+  }
+
   const [state, setState] = useState<StatusState>({ status: 'idle', data: null });
+  // @ts-expect-error - openSource is optional
   const labels = siteConfig.openSource.labels;
 
   useEffect(() => {
@@ -190,8 +196,11 @@ export default function OpenSourceStatus() {
   }, [state.data]);
 
   const summaryTone = statusToneClasses[summary.tone];
+  // @ts-expect-error - openSource is optional
   const repoSlug = `${siteConfig.openSource.owner}/${siteConfig.openSource.repo}`;
+  // @ts-expect-error - openSource is optional
   const repoUrl = siteConfig.openSource.repoUrl;
+  // @ts-expect-error - openSource is optional
   const repoBranch = siteConfig.openSource.branch;
   const upstreamRemote = `${repoUrl}.git`;
 
