@@ -4,7 +4,7 @@ import { getAllPosts } from '@/lib/markdown';
 import Layout from '@/layouts/Layout';
 import { siteConfig } from '@/config/site';
 import TagList from '@/components/TagList';
-import OpenSourceStatus from '@/components/OpenSourceStatus';
+// import OpenSourceStatus from '@/components/OpenSourceStatus';
 
 export const POSTS_PER_PAGE = 4;
 
@@ -56,7 +56,7 @@ export default function Home({ posts, currentPage, totalPages }: HomeProps) {
           <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-300 max-w-2xl">
             {siteConfig.home.subtitle}
           </p>
-          {siteConfig.openSource.enabled && <OpenSourceStatus />}
+          {/* {siteConfig.openSource.enabled && <OpenSourceStatus />} */}
         </section>
 
         <section className="space-y-10">
