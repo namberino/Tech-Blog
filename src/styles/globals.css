@@ -101,6 +101,19 @@ body {
   }
 }
 
+@keyframes blink {
+  0%, 50% {
+    opacity: 0.8;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+.cursor-blink {
+  animation: blink 2s step-end infinite;
+}
+
 .rise-in {
   opacity: 0;
   animation: rise 600ms ease-out forwards;

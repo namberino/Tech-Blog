@@ -46,7 +46,7 @@ export default function Home({ posts, currentPage, totalPages }: HomeProps) {
       <div className="max-w-4xl mx-auto">
         <section className="mb-16 rise-in" style={{ animationDelay: '40ms' }}>
           <div className="inline-flex items-center rounded-full border border-neutral-300/70 dark:border-neutral-700 bg-neutral-100/70 dark:bg-neutral-900/40 px-4 py-1 text-xs font-mono">
-            <span className="text-neutral-900 dark:text-white">nam</span><span className="text-neutral-900 dark:text-white">@</span><span className="text-neutral-900 dark:text-white">journal</span><span className="text-neutral-500 dark:text-neutral-400">:</span><span className="text-[var(--primary)]">~/welcome</span><span className="text-[var(--primary)]">$</span>
+            <span className="text-neutral-900 dark:text-white">nam</span><span className="text-neutral-900 dark:text-white">@</span><span className="text-neutral-900 dark:text-white">journal</span><span className="text-neutral-500 dark:text-neutral-400">:</span><span className="text-[var(--primary)]">~/welcome</span><span className="text-[var(--primary)]">$</span><span className="inline-block w-2 h-3 bg-neutral-500 dark:bg-neutral-400 ml-2 cursor-blink"></span>
           </div>
           <h1 className="mt-6 text-4xl sm:text-5xl font-semibold tracking-tight text-neutral-900 dark:text-white">
             {siteConfig.home.title}
