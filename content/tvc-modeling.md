@@ -50,7 +50,7 @@ This will give us an MMOI value of $0.048kg \cdot m^2$. With this value and the 
 
 A rocket will usually have 3 degrees of freedom (*3DOF*), the pitch, the yaw, and the roll. This image (from [Wikipedia](https://en.wikipedia.org/wiki/Six_degrees_of_freedom)) will give you a pretty nice visualization on what all these degrees are. 
 
-![]("./images/tvc-modeling/3dof-visual.png")
+![](./images/tvc-modeling/3dof-visual.png)
 
 A 3DOF function will help simulate the flight dynamics of the rocket by modeling motions and angles based on the forces and moments applied on it. For this rocket, since we're doing a 2D simulation, we'll need to make a 3DOF function to take into account the rotation in the vertical plane about a flat reference frame. We'll only need to care about the X and Z axes since we're going 2D so no need to worry about the Y axis. 
 
@@ -70,7 +70,7 @@ This 3DOF function will output these values:
 
 This is the pitch in a rocket:
 
-![]("./images/tvc-modeling/rocket-pitch.png")
+![](./images/tvc-modeling/rocket-pitch.png)
 
 ## Implementing the 3DOF function
 
