@@ -23,7 +23,7 @@ export const siteConfig = {
     pageTitle: 'Home',
     badgeText: '> nam@journal:~/welcome $',
     title: `Welcome to ${siteName}`,
-    // subtitle: 'Something about infosec!...',
+    subtitle: 'My personal blog about tech and science stuff.',
     readMoreLabel: 'Read more',
     noDateLabel: 'No date',
     featuredAlt: 'Featured image'
