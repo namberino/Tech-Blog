@@ -42,6 +42,8 @@ $$
 m \equiv c^d \pmod{n}
 $$
 
+![](
+
 ## A tiny worked example (not secure)
 
 Let p = 61, q = 53, so n = 3233 and phi(n) = 3120. Choose e = 17, then d = 2753 because 17 * 2753 == 1 mod 3120.
