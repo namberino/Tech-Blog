@@ -74,8 +74,8 @@ We'll need to define the specification of the `CONNECT` packet for boofuzz.
 
 ```py
 def build_connect_packet(client_id: str):
-    s_initialize("Connect")
-    with s_block("FixedHeader"):
+    s_initialize("Connect)
+    with s_block("FixedHeader):
         # CONNECT packet type
         s_bit_field(
             value=0b00010000,
@@ -93,8 +93,8 @@ def build_connect_packet(client_id: str):
             name="RemainingLength",
         )
 
-        with s_block("Remaining"):
-            with s_block("VariableHeader"):
+        with s_block("Remaining):
+            with s_block("VariableHeader):
                 s_size(
                     block_name="ProtocolName",
                     fuzzable=False,
@@ -102,23 +102,23 @@ def build_connect_packet(client_id: str):
                     endian=BIG_ENDIAN,
                     name="ProtocolNameLength",
                 )
-                with s_block("ProtocolName"):
+                with s_block("ProtocolName):
                     s_string(value="MQTT", fuzzable=False)
 
                 # Protocol version (MQTT 5.0)
-                s_byte(value=5, fuzzable=False, name="ProtocolVersion")
+                s_byte(value=5, fuzzable=False, name="ProtocolVersion)
 
                 # Connect Flags
-                s_byte(value=2, fuzzable=False, name="ConnectFlags")
+                s_byte(value=2, fuzzable=False, name="ConnectFlags)
 
                 # Keep Alive
-                s_word(value=60, fuzzable=False, endian=BIG_ENDIAN, name="KeepAlive")
+                s_word(value=60, fuzzable=False, endian=BIG_ENDIAN, name="KeepAlive)
 
                 # Properties
-                with s_block("Properties"):
-                    s_byte(value=0, fuzzable=False, name="PropertiesLength")
+                with s_block("Properties):
+                    s_byte(value=0, fuzzable=False, name="PropertiesLength)
 
-            with s_block("Payload"):
+            with s_block("Payload):
                 s_size(
                     block_name="ClientID",
                     fuzzable=False,
@@ -126,7 +126,7 @@ def build_connect_packet(client_id: str):
                     endian=BIG_ENDIAN,
                     name="ClientIDLength",
                 )
-                with s_block("ClientID"):
+                with s_block("ClientID):
                     s_string(value=client_id, fuzzable=False)
 ```
 
@@ -134,13 +134,13 @@ This function builds the `CONNECT` packet according to the 3 main components of 
 
 The first byte of every MQTT packet specifies the type of the packet (First 4 bits) and the flags of the packet (Last 4 bits). `CONNECT` has a control packet type byte of `00010000` (Specs in the below image). The `fuzzable` parameter indicates whether boofuzz should try to fuzz that component. In this case, since we're not trying to fuzz the `CONNECT` packet, we'll set all the `fuzzable` parameters to false.
 
-![]("./images/fuzzing-mqtt/mqtt-connect-control-type.png")
+![](./images/fuzzing-mqtt/mqtt-connect-control-type.png)
 
 `RemainingLength` specifies the remaining length of the packet in bytes, which is the number of bytes of both the variable header and the payload.
 
 For the `VariableHeader`, we first specify the protocol name, which is `MQTT`. Then we specify that the MQTT version that we're using is 5.0 with `ProtocolVersion`. Next, for the `ConnectFlags` (Specs in the below image), this is a 1-byte field. We're using 2 for the `ConnectFlags` field for a clean start since we're not fuzzing for username or password or anything like that.
 
-![]("./images/fuzzing-mqtt/mqtt-connect-connect-flags.png")
+![](./images/fuzzing-mqtt/mqtt-connect-connect-flags.png)
 
 `KeepAlive` is a 2-byte time interval. We're just going to set this to 60. `Properties` can contain extra information about the packet. For our use case, we're not going to need this component so we can just set the `PropertiesLength` to 0.
 
@@ -152,8 +152,8 @@ Here's the interesting part, we'll define the specification of the `PUBLISH` pac
 
 ```py
 def build_publish_packet(topic: str):
-    s_initialize("Publish")
-    with s_block("FixedHeader"):
+    s_initialize("Publish)
+    with s_block("FixedHeader):
         # PUBLISH packet type
         s_bit_field(
             value=0b00110000,
@@ -171,8 +171,8 @@ def build_publish_packet(topic: str):
             name="RemainingLength",
         )
 
-        with s_block("Remaining"):
-            with s_block("VariableHeader"):
+        with s_block("Remaining):
+            with s_block("VariableHeader):
                 s_size(
                     block_name="TopicName",
                     fuzzable=False,
@@ -180,16 +180,16 @@ def build_publish_packet(topic: str):
                     endian=BIG_ENDIAN,
                     name="TopicNameLength",
                 )
-                with s_block("TopicName"):
+                with s_block("TopicName):
                     s_string(value=topic, fuzzable=False)
 
                 # Properties
-                with s_block("Properties"):
-                    s_byte(value=0, fuzzable=False, name="PropertiesLength")
+                with s_block("Properties):
+                    s_byte(value=0, fuzzable=False, name="PropertiesLength)
 
-            with s_block("Payload"):
+            with s_block("Payload):
                 # Fuzz application message
-                s_bytes(fuzzable=True, name="ApplicationMessage")
+                s_bytes(fuzzable=True, name="ApplicationMessage)
 ```
 
 `ControlPacketType` and `RemainingLength` is pretty much the same here. The `PUBLISH` packet has a `ControlPacketType` byte of `00110000` instead. For the `VariableHeader`, we're specifying the topic name in almost the same way we would specify the protocol name in the `CONNECT` packet. We also don't have any extra properties so we set `PropertiesLength` to 0.
@@ -209,14 +209,14 @@ session = create_session(host=args.host, port=args.port)
 Additionally, we also need to specify that the `PUBLISH` packet should only be sent after the `CONNECT` packet. Then we can start fuzzing.
 
 ```py
-session.connect(s_get("Connect"))
-session.connect(s_get("Connect"), s_get("Publish"))
+session.connect(s_get("Connect))
+session.connect(s_get("Connect), s_get("Publish))
 session.fuzz()
 ```
 
 And Voilà, our MQTT fuzzer is now done. Below is an image of an example fuzzing case captured by Wireshark.
 
-![]("./images/fuzzing-mqtt/publish-packet-fuzzing-wireshark.png")
+![](./images/fuzzing-mqtt/publish-packet-fuzzing-wireshark.png)
 
 ## Fuzzing Eclipse Mosquitto
 
@@ -236,7 +236,7 @@ python fuzzer.py --host 127.0.0.1 --port 1883 --client Client1 --topic fuzz/test
 
 Additionally, we can also view the current status of boofuzz through its web interface located at port 26000 as seen below.
 
-![]("./images/fuzzing-mqtt/boofuzz-web-interface.png")
+![](./images/fuzzing-mqtt/boofuzz-web-interface.png)
 
 ## Conclusion
 

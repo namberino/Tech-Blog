@@ -121,7 +121,7 @@ plt.show()
 
 And the result is the beautiful chaotic behavior which kinda resembles the shape of a buttefly.
 
-![]("./images/lorenz-system/lorenz-system-plot-1.png")
+![](./images/lorenz-system/lorenz-system-plot-1.png)
 
 A fun thing we could do is plot the system with some color to make it look cooler. I'll set the background to black, remove the axes and the grid, and set the color map of the plot to go from blue to cyan.
 
@@ -131,8 +131,8 @@ import matplotlib.colors as mcolors
 fig = plt.figure()
 ax = fig.add_subplot(projection='3d')
 
-ax.set_facecolor("black")
-fig.patch.set_facecolor("black")
+ax.set_facecolor("black)
+fig.patch.set_facecolor("black)
 
 cmap = mcolors.LinearSegmentedColormap.from_list("blue_cyan", ["blue", "cyan"])
 colors = cmap(np.linspace(0, 1, len(x) - 1))
@@ -147,7 +147,7 @@ plt.axis('off')
 plt.show()
 ```
 
-![]("./images/lorenz-system/lorenz-system-plot-2.png")
+![](./images/lorenz-system/lorenz-system-plot-2.png)
 
 Note how the system exhibit "*rolling*" behaviors, which is consistent with how atmostpheric convection works.
 

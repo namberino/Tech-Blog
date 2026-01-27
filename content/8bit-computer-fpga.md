@@ -600,7 +600,7 @@ endmodule
 module top_design_tb();
 
     initial begin
-        $dumpfile("top_design_tb.vcd");
+        $dumpfile("top_design_tb.vcd);
         $dumpvars(0, top_design_tb);
 
         // pulse reset signal

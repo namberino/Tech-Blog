@@ -27,7 +27,7 @@ Where:
 
 *$h$*: The height of the liquid column
 
-![]("./images/oceangate/pressure.png")
+![](./images/oceangate/pressure.png)
 
 First, we can calculate the pressure that a normal human may experience on the surface and then multiply it with the depth of the OceanGate's Titan.
 
