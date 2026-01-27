@@ -48,7 +48,7 @@ nasm -f bin bootsector.asm -o bootsector.bin
 qemu-system-x86_64 bootsector.bin
 ```
 
-{{< image src="/img/os-dev/boot-sector/bootsector-simple.png" alt="Boot sector simple" position="center" style="padding: 10px" >}}
+![]("./img/os-dev/boot-sector/bootsector-simple.png")
 
 If you see a QEMU window similar to this one, the program should be working. So there we go, we've successfully programmed a super simple boot sector.
 
@@ -99,7 +99,7 @@ dw 0xaa55
 
 If we compile and emulate this program, we should get this result:
 
-{{< image src="/img/os-dev/boot-sector/bootsector-print-hello.png" alt="Boot sector print hello" position="center" style="padding: 10px" >}}
+![]("./img/os-dev/boot-sector/bootsector-print-hello.png")
 
 ## Wrap up
 

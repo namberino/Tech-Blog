@@ -27,7 +27,7 @@ Where:
 
 *$h$*: The height of the liquid column
 
-{{< image src="/img/oceangate/pressure.png" alt="pressure diagram" position="center" style="padding: 10px" >}}
+![]("./img/oceangate/pressure.png")
 
 First, we can calculate the pressure that a normal human may experience on the surface and then multiply it with the depth of the OceanGate's Titan.
 
@@ -52,4 +52,4 @@ So the OceanGate's Titan was experiencing around $400atm$ of pressure when it im
 
 It's a bit hard to put $400atm$ into perspective. So for reference, here's a video of a can exploding under only $1atm$ of pressure:
 
-{{< youtube atsgIvOUFhA >}}
+<iframe width="560" height="315" src="https://www.youtube.com/watch?v=atsgIvOUFhA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

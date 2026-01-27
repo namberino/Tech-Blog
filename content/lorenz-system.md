@@ -121,7 +121,7 @@ plt.show()
 
 And the result is the beautiful chaotic behavior which kinda resembles the shape of a buttefly.
 
-{{< image src="/img/lorenz-system/lorenz-system-plot-1.png" alt="Lorenz system plot 1" position="center" style="padding: 10px" >}}
+![]("./img/lorenz-system/lorenz-system-plot-1.png")
 
 A fun thing we could do is plot the system with some color to make it look cooler. I'll set the background to black, remove the axes and the grid, and set the color map of the plot to go from blue to cyan.
 
@@ -147,7 +147,7 @@ plt.axis('off')
 plt.show()
 ```
 
-{{< image src="/img/lorenz-system/lorenz-system-plot-2.png" alt="Lorenz system plot 2" position="center" style="padding: 10px" >}}
+![]("./img/lorenz-system/lorenz-system-plot-2.png")
 
 Note how the system exhibit "*rolling*" behaviors, which is consistent with how atmostpheric convection works.
 
