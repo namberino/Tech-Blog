@@ -1,14 +1,14 @@
-const siteName = "sondt's Blog"
+const siteName = "Nam's Journal"
 
 export const siteConfig = {
   name: siteName,
-  metaDescription: 'A professional blog about software development and technology',
+  metaDescription: 'My personal blog about tech and science stuff.',
   nav: {
     links: [
-      {
-        label: 'Github',
-        href: 'https://github.com/sondt99/Tech-Blog'
-      },
+      // {
+      //   label: 'Github',
+      //   href: 'https://github.com/namberino'
+      // },
       {
         label: 'About',
         href: '/about'
@@ -66,30 +66,31 @@ export const siteConfig = {
   },
   footer: {
     aboutTitle: `About ${siteName}`,
-    aboutText: 'Sharing In-Depth Insights About Security, CTF Challenges, and Tech Architecture.',
+    aboutText: 'Sharing In-Depth Insights About Cybersecurity and Programming.',
     connectTitle: 'Connect',
     social: {
-      githubUrl: 'https://github.com/sondt99',
-      xUrl: 'https://x.com/_sondt_'
+      githubUrl: 'https://github.com/namberino',
+      xUrl: 'https://x.com/namberino',
+      linkedinUrl: 'https://linkedin.com'
     }
   },
-  openSource: {
-    enabled: true,
-    // true is enable status <Vercel>
-    owner: 'sondt99',
-    repo: 'Tech-Blog',
-    branch: 'main',
-    repoUrl: 'https://github.com/sondt99/Tech-Blog',
-    labels: {
-      summaryTitle: 'Open-source',
-      statusLabel: 'Status',
-      upToDate: 'Up to date',
-      outdated: 'Outdated',
-      unknown: 'Status unknown',
-      checking: 'Checking updates'
-    }
-  },
+  // openSource: {
+  //   enabled: true,
+  //   // true is enable status <Vercel>
+  //   owner: 'sondt99',
+  //   repo: 'Tech-Blog',
+  //   branch: 'main',
+  //   repoUrl: 'https://github.com/sondt99/Tech-Blog',
+  //   labels: {
+  //     summaryTitle: 'Open-source',
+  //     statusLabel: 'Status',
+  //     upToDate: 'Up to date',
+  //     outdated: 'Outdated',
+  //     unknown: 'Status unknown',
+  //     checking: 'Checking updates'
+  //   }
+  // },
   api: {
-    helloName: 'sondt'
+    helloName: 'namberino'
   }
 } as const
