@@ -21,9 +21,9 @@ export const siteConfig = {
   },
   home: {
     pageTitle: 'Home',
-    badgeText: 'Security | Systems | Research',
+    badgeText: '> nam@journal:~/welcome $',
     title: `Welcome to ${siteName}`,
-    subtitle: 'Something about infosec!...',
+    // subtitle: 'Something about infosec!...',
     readMoreLabel: 'Read more',
     noDateLabel: 'No date',
     featuredAlt: 'Featured image'
@@ -71,7 +71,7 @@ export const siteConfig = {
     social: {
       githubUrl: 'https://github.com/namberino',
       xUrl: 'https://x.com/namberino',
-      linkedinUrl: 'https://linkedin.com'
+      linkedinUrl: 'https://linkedin.com/in/binh-nam-nguyen'
     }
   },
   // openSource: {
