@@ -259,7 +259,7 @@ This problem is a tree problem. We are given a tree with `N` nodes, labeled 1 to
 
 For example: Given `N = 6`, `p = [0, 1, 1, 3, 3, 3]`, and `v = [30, 15, 10, 20, 15, 18]`, we can draw this tree out:
 
-![]("./img/lge-dreamcode-writeup/example-tree.png")
+![]("./images/lge-dreamcode-writeup/example-tree.png")
 
 For a node-subset `S` to be a "good" node-subset, it needs to satisfies these 2 conditions:
 
@@ -450,7 +450,7 @@ We are given 2 mountains: Mt. East and Mt. West, which I'll just call East and W
 
 Below is an example of a map of the 2 mountains with its trails and the bridge. The square indicates the entrance of East and the circle indicates the entrance of West.
 
-![]("./img/lge-dreamcode-writeup/example-mountain-trails.png")
+![]("./images/lge-dreamcode-writeup/example-mountain-trails.png")
 
 A hiking route needs to satisfy these conditions:
 - The route's length must be at least `C` and at most `D` long.

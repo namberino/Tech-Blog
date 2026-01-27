@@ -61,7 +61,7 @@ We're particularly interested in the UNIX syscall interrupt, specified by the in
 
 System calls (or syscalls for short) are interfaces between the user space and the kernel space. User space is where user applications and software is executed. Kernel space is where the kernel resides. The kernel is the most important part of an OS. It sits between the higher-level applications and the lower-level hardware and facilitates communication between the two.
 
-![]("./img/asm-webserver/kernel-space-diagram.png"}
+![]("./images/asm-webserver/kernel-space-diagram.png"}
 
 Applications in the user space interract with the kernel through syscalls. Syscalls allows the applications to request services from the OS, like networking, file operations, process control, etc.
 
@@ -82,7 +82,7 @@ If you've ever studied about networking, you'd be quite familiar with the concep
 
 Socket programming means connecting 2 sockets together to communicate with each other. One socket will listen on a particular port at a particular IP while the other socket will connect to that listening socket to form a connection. Below is a diagram of how this connection and communication process works.
 
-![]("./img/asm-webserver/socket-flow-diagram.png")
+![]("./images/asm-webserver/socket-flow-diagram.png")
 
 So how exactly do sockets work and how can we program one? There's a few steps to making a socket:
 1. *Create a socket*: We can use the `socket` syscall to create a socket object. We can specify the type of IP address to use and which communication protocol to use.
@@ -530,7 +530,7 @@ At this point, we have server that can process both the GET request and the POST
 
 In order to implement multi-processing, we'll need to use a syscall called `fork`. This syscall allows us to duplicate the current process, resulting in 2 of the same process. When `fork` is called, it creates 2 processes that are the same as each other and it will return a different value depending on the process. It will return the ID of the child process to the original parent process, and it will return 0 to the child process. This fact is really important as it allows us to determine if the current process is a child process or a parent process, which helps us determine which part of the code to execute. Usually the `exec` syscall is used with `fork` but for our purposes, which are pretty simple, we don't necessarily need to use `exec`.
 
-![]("./img/asm-webserver/fork-syscall-visual.png")
+![]("./images/asm-webserver/fork-syscall-visual.png")
 
 Another thing about duplicate processes is that they are independent of each other. If we were to say close a file descriptor on the parent process, that file descriptor would still be open on the child process. If the child process want to also close that file descriptor, it would have to do it by itself.
 

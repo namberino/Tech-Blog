@@ -21,7 +21,7 @@ I decided to find an older version of the firmware an try to crack it. After loo
 
 After reading the documentation and release note for the version 2.2 and older firmware versions, I found something interesting in the [release note](https://www.moxa.com/Moxa/media/PDIM/S100000210/W2250A%20Series_moxa-nport-w2150a-w2250a-series-firmware-1.11.rom_Software%20Release%20History.pdf) of version *1.11*:
 
-![]("./img/nport-firmware/nport-firmware-version11-release-note.png")
+![]("./images/nport-firmware/nport-firmware-version11-release-note.png")
 
 Version *1.11* is a requirement for upgrading to version *2.2*. This got me wondering if the encryption for the firmware was added with the v2.2 update. So I downloaded the [v1.11](https://www.moxa.com/Moxa/media/PDIM/S100000210/moxa-nport-w2150a-w2250a-series-firmware-1.11.rom) release and start checking out the firmware.
 
@@ -38,7 +38,7 @@ Next, I tried `binwalk` on this version 1.11:
 binwalk moxa-nport-w2150a-w2250a-series-firmware-1.11.rom
 ```
 
-![]("./img/nport-firmware/nport-firmware-older-version-binwalk.png")
+![]("./images/nport-firmware/nport-firmware-older-version-binwalk.png")
 
 And we can confirm that this firmware is not encrypted. There are 2 things that looks interesting here: The 2 `squashfs` filesystems compressed by `gzip`. `squashfs` is an entire Linux filesystem compressed. 
 
@@ -49,7 +49,7 @@ binwalk -e moxa-nport-w2150a-w2250a-series-firmware-1.11.rom
 
 This command will extract the *v1.11* firmware into the `_moxa-nport-w2150a-w2250a-series-firmware-1.11.rom.extracted` directory:
 
-![]("./img/nport-firmware/nport-firmware-extracted-screenshot.png")
+![]("./images/nport-firmware/nport-firmware-extracted-screenshot.png")
 
 There are some `squashfs-root` directories, which contains the firmware's Linux filesystem. Before we can access this, we need to give the directories correct permissions to be able to access it:
 ```bash
@@ -58,7 +58,7 @@ sudo chmod -R 770 squashfs-root*
 
 Now we can access the `squashfs-root` directories. This looks like a *UNIX* filesystem:
 
-![]("./img/nport-firmware/nport-firmware-old-version-filesystem.png")
+![]("./images/nport-firmware/nport-firmware-old-version-filesystem.png")
 
 After searching through the directories, I stumbled across an interesting file in the `lib` directory of `squashfs-root-1`: `libupgradeFirmware.so`. Because we found out earlier that upgrading to *v2.2* requires us to have *v1.11*, I'm guessing this `libupgradeFirmware.so` library will contain some information about how the firmware is encrypted. So let's analyze this binary.
 
@@ -68,17 +68,17 @@ I'll use [`Ghidra`](https://ghidra-sre.org/) as my decompiler of choice. It's op
 
 Before we get into Ghidra, I'll run `strings` on the file to check for what functions we can find in here:
 
-![]("./img/nport-firmware/nport-firmware-strings.png")
+![]("./images/nport-firmware/nport-firmware-strings.png")
 
 Already, we can see some interesting stuff just from that screenshot. We can see there are some AES functions, which means this binary uses **AES** block encryption algorithm. Let's run `grep` to see what other AES functions there are:
 
-![]("./img/nport-firmware/nport-firmware-strings-grep-aes.png")
+![]("./images/nport-firmware/nport-firmware-strings-grep-aes.png")
 
 This is using AES in **ECB** mode (Electronic Code Block mode). Because **ECB** mode generates repeating ciphertext from repeating plaintext, it is easy for someone to derive the secret key and decrypt the encryption. So this represents a huge vulnerability, which we can exploit.
 
 I also saw from the `strings` output that there's a couple of functions with the prefix `fw`. I'm assuming it's a shorthand for firmware since from looking through the strings output, there's some operations like *write* and *decrypt*. I'll run `grep` on `fw` to see what other functions there are:
 
-![]("./img/nport-firmware/nport-firmware-strings-fw.png")
+![]("./images/nport-firmware/nport-firmware-strings-fw.png")
 
 The `fw_decrypt` function is probably the firmware decrypt function, which means it's quite important in this firmware. 
 
@@ -152,7 +152,7 @@ After some digging around in the code, I found that the `fw_decrypt` function ca
 
 I'll try to reverse engineer this to get the key. We'll start by reversing the `ecb128Decrypt` function:
 
-![]("./img/nport-firmware/nport-firmware-ecb128decrypt-function-reversed.png")
+![]("./images/nport-firmware/nport-firmware-ecb128decrypt-function-reversed.png")
 
 Let's analyze this. I'll rename and retype the variables as we analyze the program.
 
@@ -172,7 +172,7 @@ Next, we can see that `iVar1` is the index variable used in the loop, and it onl
 
 Here's the renamed and retyped function:
 
-![]("./img/nport-firmware/nport-firmware-ecb128decrypt-reversed-renamed.png")
+![]("./images/nport-firmware/nport-firmware-ecb128decrypt-reversed-renamed.png")
 
 Now, we can say how `ecb128Decrypt` works: It takes in an encrypted input buffer (`decrypt_in`), decrypt it with a key (`decrypt_key`), and output it into an output buffer (`decrypt_out`).
 
@@ -333,7 +333,7 @@ This could be an indication of an obfuscation or encryption scheme. We'll take a
 
 Firstly, we need to get the hex data that `passwd.3309` is pointing to, we can do this by looking at the **Bytes** window in Ghidra:
 
-![]("./img/nport-firmware/nport-firmware-fw_decrypt-passwd-bytes.png")
+![]("./images/nport-firmware/nport-firmware-fw_decrypt-passwd-bytes.png")
 
 We'll copy all those highlighted bytes into a Python array:
 
@@ -379,7 +379,7 @@ print("".join(chr(byte) for byte in passwd))
 
 If we run this, we get this as an output:
 
-![]("./img/nport-firmware/nport-firmware-fw_decrypt-python-output.png")
+![]("./images/nport-firmware/nport-firmware-fw_decrypt-python-output.png")
 
 So that means the password or the AES decrypt key of this program is "*2887Conn7564*". We can now use this to decrypt the encrypted file. We need to convert this into hexadecimal first before we can use it:
 
@@ -416,7 +416,7 @@ openssl aes-128-ecb -d -K "32383837436f6e6e373536340000" -in firmware-offseted.e
 
 This will output a `firmware.decrypted` file. Now if we run `binwalk` on this decrypted file:
 
-![]("./img/nport-firmware/nport-firmware-firmware-decrypted-openssl.png")
+![]("./images/nport-firmware/nport-firmware-firmware-decrypted-openssl.png")
 
 Now we can actually extract the files into `_firmware.decrypted.extracted`:
 
@@ -433,7 +433,7 @@ chmod +x -R squashfs-root*
 
 Now we have full access to the firmware:
 
-![]("./img/nport-firmware/nport-firmware-firmware-decrypted-filesystem.png")
+![]("./images/nport-firmware/nport-firmware-firmware-decrypted-filesystem.png")
 
 ## The conclusion
 

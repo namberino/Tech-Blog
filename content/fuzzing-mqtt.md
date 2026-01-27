@@ -134,13 +134,13 @@ This function builds the `CONNECT` packet according to the 3 main components of 
 
 The first byte of every MQTT packet specifies the type of the packet (First 4 bits) and the flags of the packet (Last 4 bits). `CONNECT` has a control packet type byte of `00010000` (Specs in the below image). The `fuzzable` parameter indicates whether boofuzz should try to fuzz that component. In this case, since we're not trying to fuzz the `CONNECT` packet, we'll set all the `fuzzable` parameters to false.
 
-![]("./img/fuzzing-mqtt/mqtt-connect-control-type.png")
+![]("./images/fuzzing-mqtt/mqtt-connect-control-type.png")
 
 `RemainingLength` specifies the remaining length of the packet in bytes, which is the number of bytes of both the variable header and the payload.
 
 For the `VariableHeader`, we first specify the protocol name, which is `MQTT`. Then we specify that the MQTT version that we're using is 5.0 with `ProtocolVersion`. Next, for the `ConnectFlags` (Specs in the below image), this is a 1-byte field. We're using 2 for the `ConnectFlags` field for a clean start since we're not fuzzing for username or password or anything like that.
 
-![]("./img/fuzzing-mqtt/mqtt-connect-connect-flags.png")
+![]("./images/fuzzing-mqtt/mqtt-connect-connect-flags.png")
 
 `KeepAlive` is a 2-byte time interval. We're just going to set this to 60. `Properties` can contain extra information about the packet. For our use case, we're not going to need this component so we can just set the `PropertiesLength` to 0.
 
@@ -216,7 +216,7 @@ session.fuzz()
 
 And Voilà, our MQTT fuzzer is now done. Below is an image of an example fuzzing case captured by Wireshark.
 
-![]("./img/fuzzing-mqtt/publish-packet-fuzzing-wireshark.png")
+![]("./images/fuzzing-mqtt/publish-packet-fuzzing-wireshark.png")
 
 ## Fuzzing Eclipse Mosquitto
 
@@ -236,7 +236,7 @@ python fuzzer.py --host 127.0.0.1 --port 1883 --client Client1 --topic fuzz/test
 
 Additionally, we can also view the current status of boofuzz through its web interface located at port 26000 as seen below.
 
-![]("./img/fuzzing-mqtt/boofuzz-web-interface.png")
+![]("./images/fuzzing-mqtt/boofuzz-web-interface.png")
 
 ## Conclusion
 
